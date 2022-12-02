@@ -1,4 +1,5 @@
 <?php include './conn.php'?>
+<?php include './funtions.php'?>
+
 <?php
-$id = $_GET['id'];
-echo $id;
+delete();
