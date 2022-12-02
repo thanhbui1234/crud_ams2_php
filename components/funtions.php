@@ -32,7 +32,6 @@ function read()
     $data = $statement->fetchAll();
 
 }
-
 function checkForm($value, $default = " <h1 class='text-red-600'>Bạn phải nhập trường này</h1>")
 {
     if (!empty($value)) {
@@ -42,7 +41,6 @@ function checkForm($value, $default = " <h1 class='text-red-600'>Bạn phải nh
     }
 
 }
-
 function create()
 {
     global $connect;
@@ -58,9 +56,33 @@ function create()
     $sql .= " VALUES ('$name', '$age','$type','$weight','$img' )  ";
     $statement = $connect->prepare($sql);
     $statement->execute();
-
 }
-
+function readForUd()
+{
+    global $connect;
+    $id = $_GET['id'];
+    // echo $id;
+    $sql = "SELECT * FROM pets where id  = $id";
+    $statement = $connect->prepare($sql);
+    $statement->execute();
+    global $data;
+    $data = $statement->fetchAll();
+    // foreach ($data as $row => $key) {
+    //     print_r($key);
+    // }
+}
+function update()
+{
+    global $connect;
+    $id = $_GET['id'];
+    $name = $_POST['name'];
+    $type_animal = $_POST['option'];
+    $age = $_POST['age'];
+    $weight = $_POST['weight'];
+    $sql = "UPDATE pets SET age = $age, type_animal = $type_animal , weight = $weight where id = $id";
+    $statement = $connect->prepare($sql);
+    $statement->execute();
+}
 //     $sql = "INSERT INTO pets(name,type_animal,age,weight,img)
 // VALUES ('$name','$age','$weight','$img) ";
 //     $statement = $connect->prepare($sql);

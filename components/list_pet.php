@@ -48,6 +48,8 @@ if (isset($_POST['submit'])) {
     $age = $value['age'];
     $weight = $value['weight'];
     $img = $value['img'];
+    $url = "/components//edit_pets.php?id=$id";
+    $url2 = "/components//delete_pets.php?id=$id";
 
     ?>
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
@@ -71,8 +73,10 @@ if (isset($_POST['submit'])) {
                         <img class="w-[50px]" src="/uploads//<?php echo checkForm($img); ?> " alt="">
                     </th>
                     <td class="py-4 px-6">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <a href="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
+                        <a href="<?php echo $url ?>" ; class="font-medium text-blue-600 d
+                            ark:text-blue-500 hover:underline">Edit</a>
+                        <a onclick=" return confirm('Ban muon xoa truong nay?')" href="<?php echo $url2 ?> "
+                            class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
 
                     </td>
                 </tr>
