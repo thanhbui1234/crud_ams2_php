@@ -83,6 +83,15 @@ function update()
     $statement = $connect->prepare($sql);
     $statement->execute();
 }
+function delete()
+{
+    global $connect;
+    echo $id = $_GET['id'];
+
+    $sql = "DELETE FROM pets where id =$id";
+    $statement = $connect->prepare($sql);
+
+}
 //     $sql = "INSERT INTO pets(name,type_animal,age,weight,img)
 // VALUES ('$name','$age','$weight','$img) ";
 //     $statement = $connect->prepare($sql);
