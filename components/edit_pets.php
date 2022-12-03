@@ -2,19 +2,7 @@
 <?php include './funtions.php'?>
 
 <?php
-if (isset($_POST['submit'])) {
-    // $connect;
-    $id = $_GET['id'];
-    $name = $_POST['name'];
-    $type_animal = $_POST['option'];
-    $age = $_POST['age'];
-    $weight = $_POST['weight'];
-    $sql = "UPDATE pets SET age = $age, type_animal = $type_animal , weight = $weight where id = $id";
-    $statement = $connect->prepare($sql);
-    $statement->execute();
-
-    header('Location: ./list_pet.php ');
-}
+update();
 ?>
 
 <form enctype="multipart/form-data" action="" class="w-full pb-20 pt-24 grid place-items-center bg-[#c0c0c0] "

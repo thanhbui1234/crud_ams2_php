@@ -8,6 +8,18 @@ if (isset($_POST['submit'])) {
 
 }
 ?>
+<?php if (!empty($_GET['msg'])) {
+    echo "<script>Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Bạn đã xóa thành công ',
+  showConfirmButton: false,
+  timer: 2500
+})</script>";
+}
+
+?>
+
 
 <div class=" bg-white border-y border-b dark:bg-gray-900 dark:border-gray-700">
 
@@ -75,7 +87,7 @@ if (isset($_POST['submit'])) {
                     <td class="py-4 px-6">
                         <a href="<?php echo $url ?>" ; class="font-medium text-blue-600 d
                             ark:text-blue-500 hover:underline">Edit</a>
-                        <a onclick=" return confirm('Ban muon xoa truong nay?')" href="<?php echo $url2 ?> "
+                        <a href="<?php echo $url2; ?>  "
                             class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
 
                     </td>

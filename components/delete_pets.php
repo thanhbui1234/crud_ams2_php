@@ -2,4 +2,4 @@
 <?php include './funtions.php'?>
 
 <?php
-delete();
+delete();?>

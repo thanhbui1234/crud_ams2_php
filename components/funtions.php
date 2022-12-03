@@ -71,18 +71,18 @@ function readForUd()
     //     print_r($key);
     // }
 }
-function update()
-{
-    global $connect;
-    $id = $_GET['id'];
-    $name = $_POST['name'];
-    $type_animal = $_POST['option'];
-    $age = $_POST['age'];
-    $weight = $_POST['weight'];
-    $sql = "UPDATE pets SET age = $age, type_animal = $type_animal , weight = $weight where id = $id";
-    $statement = $connect->prepare($sql);
-    $statement->execute();
-}
+// function update()
+// {
+//     global $connect;
+//     $id = $_GET['id'];
+//     $name = $_POST['name'];
+//     $type_animal = $_POST['option'];
+//     $age = $_POST['age'];
+//     $weight = $_POST['weight'];
+//     $sql = "UPDATE pets SET age = $age, type_animal = $type_animal , weight = $weight where id = $id";
+//     $statement = $connect->prepare($sql);
+//     $statement->execute();
+// }
 function delete()
 {
     global $connect;
@@ -91,8 +91,41 @@ function delete()
     $sql = "DELETE FROM pets where id =$id";
     $statement = $connect->prepare($sql);
 
+    $msg = '';
+    if ($statement->execute()) {
+        $msg = 'delete successfully';
+    } else {
+        $msg = ' delete error';
+    }
+    header('location: ./list_pet.php?msg=' . $msg);
+
 }
-//     $sql = "INSERT INTO pets(name,type_animal,age,weight,img)
-// VALUES ('$name','$age','$weight','$img) ";
-//     $statement = $connect->prepare($sql);
-//     $statement->execute();
+function update()
+{
+    if (isset($_POST['submit'])) {
+        // $connect;
+        global $connect;
+        $id = $_GET['id'];
+        $name = $_POST['name'];
+        $type_animal = $_POST['option'];
+        $age = $_POST['age'];
+        $weight = $_POST['weight'];
+        $img = basename($_FILES['img']['name']);
+        $target_dir = '../uploads/';
+        $target_file = $target_dir . $img;
+        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+        $sql = "UPDATE pets SET name ='$name', age = $age, type_animal = '$type_animal' , weight = '$weight', img = '$img' where id = $id";
+        $statement = $connect->prepare($sql);
+        $aletUpdate = '';
+        if ($statement->execute()) {
+            $aletUpdate = 'UPDATE THANH CONG';
+
+        } else {
+            $aletUpdate = 'UPDATE khong THANH CONG';
+
+        }
+        header('Location: ./list_pet.php?msg2 = ' . $aletUpdate);
+
+    }
+
+}
