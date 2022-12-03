@@ -26,11 +26,14 @@
             nghiem</span>
         <div>
 
+
             <ul class="opacity-40 flex gap-5 ">
-                <li><i class="text-xl fa-brands fa-square-facebook"></i></li>
-                <li> <i class="text-xl fa-brands fa-twitter"></i></li>
-                <li> <i class="text-xl fa-brands fa-youtube"></i></li>
-                <li> <i class="text-xl fa-brands fa-instagram"></i></li>
+                <li><a href="https://www.facebook.com/homnaytoibuonf/
+"><i class="text-xl fa-brands fa-square-facebook"></i></a></li>
+
+                <li><a href="https://www.instagram.com/_na.hth/
+
+"><i class="text-xl fa-brands fa-instagram"></i></a></li>
             </ul>
         </div>
     </div>

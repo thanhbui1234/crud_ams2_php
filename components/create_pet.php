@@ -14,13 +14,13 @@
                 <div class="grid">
                     <label class="py-2" for="type_animal">Type pet</label>
                     <select name="option">
-                        <option value="gián">Gián</option>
-                        <option value="gà">Gà</option>
-                        <option value="chó">Chó</option>
-                        <option value="mèo">Mèo</option>
-                        <option value="ếch">Ếch</option>
-                        <option value="ếch">Gái</option>
-                        <option value="ếch">Khác</option>
+                        <option value="Gian">Gián</option>
+                        <option value="Gà">Gà</option>
+                        <option value="Chó">Chó</option>
+                        <option value="Mèo">Mèo</option>
+                        <option value="Ếch">Ếch</option>
+                        <option value="Gái">Gái</option>
+                        <option value="Khác">Khác</option>
                     </select>
                 </div>
                 <div class="grid">

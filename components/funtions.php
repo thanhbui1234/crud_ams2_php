@@ -5,23 +5,23 @@ include './conn.php';
 function login()
 {
     if (isset($_POST['submit'])) {
-
         $email = $_POST['email'];
         $password = $_POST['password'];
+        global $connect;
+        $sql = "insert into users (email, password) values ('$email', '$password')";
+        $statement = $connect->prepare($sql);
+        $statement->execute();
 
         if (empty($email) || empty($password)) {
             echo "<h2 class='font-bold pt-3 text-2xl text-red-500 leading-10'>Bạn phải nhập đầy đủ tài khoản và mật khẩu</h2>";
             echo " <a href='./login.php' class='text-red-600 !! font-bold text-3xl'> Trở lại <i class='fa-solid fa-retweet'></i>  </a>";
-
             return false;
         }
-
         echo "<h2 class='font-bold pt-3 text-2xl text-red-500 leading-10'>Chào mừng tài khoản $email <br> đã đến với shop cho mèo uy tín nhất thế giới</h2>";
 
     }
 
 }
-
 function read()
 {
     global $connect;
@@ -30,7 +30,6 @@ function read()
     $statement->execute();
     global $data;
     $data = $statement->fetchAll();
-
 }
 function checkForm($value, $default = " <h1 class='text-red-600'>Bạn phải nhập trường này</h1>")
 {
@@ -39,7 +38,6 @@ function checkForm($value, $default = " <h1 class='text-red-600'>Bạn phải nh
     } else {
         return $default;
     }
-
 }
 function create()
 {
@@ -57,6 +55,27 @@ function create()
     $statement = $connect->prepare($sql);
     $statement->execute();
 }
+function readCategory()
+{
+    global $connect;
+    $sql = " SELECT cate.id, cate.name, p.type_animal , p.img FROM pets as p right join  pets_category as cate on ";
+    $sql .= " p.id = cate.id";
+    $statement = $connect->prepare($sql);
+    $statement->execute();
+    global $datacategory;
+    $datacategory = $statement->fetchAll();
+
+}
+
+function create_category()
+{global $connect;
+    $name = $_POST['name'];
+    $sql = "INSERT INTO pets_category (name) values ('$name')";
+    $statement = $connect->prepare($sql);
+    $statement->execute();
+
+}
+
 function readForUd()
 {
     global $connect;
@@ -100,6 +119,24 @@ function delete()
     header('location: ./list_pet.php?msg=' . $msg);
 
 }
+function deleteCategory()
+{
+    global $connect;
+    echo $id = $_GET['id'];
+
+    $sql = "DELETE FROM pets_category where id =$id";
+    $statement = $connect->prepare($sql);
+
+    $msg = '';
+    if ($statement->execute()) {
+        $msg = 'delete successfully';
+    } else {
+        $msg = ' delete error';
+    }
+    header('location: ./list_category.php?msg=' . $msg);
+
+}
+
 function update()
 {
     if (isset($_POST['submit'])) {

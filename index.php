@@ -5,7 +5,6 @@
 <DIV class="   bg-[#c0c0c0]">
 
 
-
     <div class="pt-3">
         <h3 class=" mx-1 mt-5 md:mx-[110px]  lg:mx-28 text-3xl">
             Họ và tên : Bùi Chí Thanh
@@ -28,7 +27,7 @@
                 Quản lý vật nuôi
             </button></a>
 
-        <a href="//components/login.php"> <button
+        <a href=".//components//create_category.php"> <button
                 class="mb-5 md:ml-6 rounded text-3xl px-7 py-2  lg:ml-8 text-red-600 border border-current transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110 hover:bg-white duration-300">
                 Quản lý loại vật nuôi
             </button></a>
