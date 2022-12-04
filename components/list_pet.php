@@ -8,17 +8,16 @@ if (isset($_POST['submit'])) {
 
 }
 ?>
-<?php if (!empty($_GET['msg'])) {
-    echo "<script>Swal.fire({
-  position: 'top-end',
-  icon: 'success',
-  title: 'Bạn đã xóa thành công ',
-  showConfirmButton: false,
-  timer: 2500
-})</script>";
-}
+<?php
+aletdelete();
+?>
+
+<?php
+aletUpdate();
 
 ?>
+
+
 
 <button
     class=" transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110  duration-300 rounded px-2 text-red-600 border bg-green-600 h-8 absolute right-0 top-[130px] "><a

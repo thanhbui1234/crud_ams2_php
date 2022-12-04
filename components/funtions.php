@@ -58,7 +58,7 @@ function create()
 function readPetCate()
 {
     global $connect;
-    $sql = " SELECT cate.name, p.type_animal , p.img FROM pets as p left join  nameCate as cate on ";
+    $sql = " SELECT cate.id, cate.name, p.type_animal , p.img FROM pets as p right join  nameCate as cate on ";
     $sql .= " p.id = cate.id";
     $statement = $connect->prepare($sql);
     $statement->execute();
@@ -67,15 +67,15 @@ function readPetCate()
     // print_r($datapetCate);
 }
 
-function insertDbCate($name, $type, $img)
-{
-    global $connect;
-    $sql = "INSERT INTO pets_categories (name , type_animal ,img) ";
-    $sql .= " VALUES ('$name','$type','$img')";
-    $statement = $connect->prepare($sql);
-    $statement->execute();
+// function insertDbCate($name, $type, $img)
+// {
+//     global $connect;
+//     $sql = "INSERT INTO pets_categories (name , type_animal ,img) ";
+//     $sql .= " VALUES ('$name','$type','$img')";
+//     $statement = $connect->prepare($sql);
+//     $statement->execute();
 
-}
+// }
 function create_nameCate()
 {global $connect;
     $name = $_POST['name'];
@@ -85,16 +85,16 @@ function create_nameCate()
 
 }
 
-function readDBcategories()
-{
-    global $connect;
-    $sql = "SELECT * FROM pets_categories";
-    $statement = $connect->prepare($sql);
-    $statement->execute();
-    global $datadb;
-    $datadb = $statement->fetchAll();
+// function readDBcategories()
+// {
+//     global $connect;
+//     $sql = "SELECT * FROM pets_categories";
+//     $statement = $connect->prepare($sql);
+//     $statement->execute();
+//     global $datadb;
+//     $datadb = $statement->fetchAll();
 
-}
+// }
 
 function readForUd()
 {
@@ -110,18 +110,18 @@ function readForUd()
     //     print_r($key);
     // }
 }
-// function readFudCategory()
-// {
-//     global $connect;
-//     $id = $_GET['id'];
-//     $sql = " SELECT cate.id, cate.name, p.type_animal ,p.img  FROM pets as p right join  pets_category as cate on ";
-//     $sql .= " p.id = cate.id WHERE cate.id = $id";
-//     $statement = $connect->prepare($sql);
-//     $statement->execute();
-//     global $dataCate;
-//     $dataCate = $statement->fetchAll();
+function readFudCategory()
+{
+    global $connect;
+    $id = $_GET['id'];
+    $sql = " SELECT cate.id, cate.name, p.type_animal ,p.img  FROM pets as p right join  namecate as cate on ";
+    $sql .= " p.id = cate.id WHERE cate.id = $id";
+    $statement = $connect->prepare($sql);
+    $statement->execute();
+    global $dataCate;
+    $dataCate = $statement->fetchAll();
 
-// }
+}
 function delete()
 {
     global $connect;
@@ -139,23 +139,38 @@ function delete()
     header('location: ./list_pet.php?msg=' . $msg);
 
 }
-// function deleteCategory()
-// {
-//     global $connect;
-//     echo $id = $_GET['id'];
+function deleteCategory()
+{
+    global $connect;
+    echo $id = $_GET['id'];
 
-//     $sql = "DELETE FROM pets_category where id =$id";
-//     $statement = $connect->prepare($sql);
+    $sql = "DELETE FROM namecate where id =$id";
+    $statement = $connect->prepare($sql);
 
-//     $msg = '';
-//     if ($statement->execute()) {
-//         $msg = 'delete successfully';
-//     } else {
-//         $msg = ' delete error';
-//     }
-//     header('location: ./list_category.php?msg=' . $msg);
+    $msg = '';
+    if ($statement->execute()) {
+        $msg = 'delete successfully';
+    } else {
+        $msg = ' delete error';
+    }
+    header('location: ./list_category.php?msg=' . $msg);
 
-// }
+}
+function aletdelete()
+{
+    if (!empty($_GET['msg'])) {
+
+        echo "<script>
+Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Bạn đã xóa thành công ',
+    showConfirmButton: false,
+    timer: 2500
+})
+</script>";}
+
+}
 
 function update()
 {
@@ -181,7 +196,47 @@ function update()
             $aletUpdate = 'UPDATE khong THANH CONG';
 
         }
-        header('Location: ./list_pet.php?msg2 = ' . $aletUpdate);
+        header("Location: ./list_pet.php?alet=" . $aletUpdate);
+
+    }
+
+}
+function update2()
+{
+    $name = $_POST['name'];
+    $type_animal = $_POST['option'];
+    $img = basename($_FILES['img2']['name']);
+    $id = $_GET['id'];
+    global $connect;
+    $alet = '';
+
+    $sql = " UPDATE namecate SET name = '$name' WHERE id = '$id'";
+    $statement = $connect->prepare($sql);
+    $statement->execute();
+    $sql1 = " UPDATE pets SET type_animal = '$type_animal', img ='$img' WHERE id = '$id'";
+    $statement1 = $connect->prepare($sql1);
+    if ($statement1->execute()) {
+        $alet = 'update thanh` cong';
+
+    } else {
+        $alet = 'update khong thanh cong';
+
+    }
+    header("location: ./list_category.php?alet=" . $alet);
+
+}
+function aletUpdate()
+{
+    if (!empty($_GET['alet'])) {
+        echo "<script>
+Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Bạn đã update thành công ',
+    showConfirmButton: false,
+    timer: 2500
+})
+</script>";
 
     }
 

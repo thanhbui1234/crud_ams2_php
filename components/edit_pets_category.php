@@ -1,11 +1,10 @@
 <?php include './header.php'?>
 <?php include './funtions.php'?>
+<?php include './conn.php';
+?>
 
 <?php if (isset($_POST['submit'])) {
-    echo $name = $_POST['name'];
-    echo $type_animal = $_POST['option'];
-    echo $imgg = $_POST['img'];
-
+    update2();
 }?>
 
 <form enctype="multipart/form-data" action="" class="w-full pb-20 pt-24 grid place-items-center bg-[#c0c0c0] "
@@ -18,8 +17,8 @@
                 <?php readFudCategory();?>
                 <?php foreach ($dataCate as $key => $value) {?>
                 <?php $name = $value['name'];
-                    $type_animal = $value['type_animal'];
-                    $img = $value['img'];
+    $type_animal = $value['type_animal'];
+    $img = $value['img'];
     ?>
                 <div class="grid">
                     <label class="py-2" for="name">Name</label>
@@ -43,7 +42,7 @@
             </div>
             <div class="grid  pb-3">
                 <label class="py-2" for="img">Image</label>
-                <input name="img" value="<?php echo $img ?>" type="file">
+                <input type="file" value="<?php echo $img ?>" name="img2">
             </div>
             <?php }?>
             <div class="grid pb-5">
