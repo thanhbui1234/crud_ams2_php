@@ -37,7 +37,7 @@
                     </li>
                     <li class="mb-6 md:mb-0 lg:mb-0">
                         <a class="text-white text-sm px-6 lg:px-0 md:px-0 md:text-cyan-800 lg:text-cyan-800 b-4 font-bold uppercase lg:text-lg lg:pl-12 md:pl-7 hover:text-red-700"
-                            href="/components//list_category.php">Danh mục vật nuôi</a>
+                            href="/components//list_category.php">Danh mục pet</a>
                     </li>
                 </ul>
                 <!--  -->

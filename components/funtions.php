@@ -166,3 +166,7 @@ function update()
     }
 
 }
+function updateCategory()
+{
+
+}

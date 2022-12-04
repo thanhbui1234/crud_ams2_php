@@ -1,2 +1,2 @@
 <?php
-deleteCategory();
+updateCategory();

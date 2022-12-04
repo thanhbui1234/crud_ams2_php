@@ -1,7 +1,4 @@
 <?php include './header.php'?>
-
-
-
 <?php include './/funtions.php'?>
 <?php
 
@@ -22,7 +19,13 @@ Swal.fire({
 </script>";}
 
 ?>
-<div class=" bg-white border-y border-b dark:bg-gray-900 dark:border-gray-700">
+<button
+    class=" transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110  duration-300 rounded px-2 text-red-600 border bg-green-600 h-8 absolute right-0 top-[130px] "><a
+        href=".//create_category.php"><i class="fa-solid fa-plus">ADD
+            NEW</i></a></button>
+
+
+<div class=" bg-white border-y border-b dark:bg-gray-900 dark:border-gray-700 mt-10">
 
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
