@@ -3,9 +3,9 @@
 <?php
 
 if (isset($_POST['submit'])) {
-    create_category();
+    create_nameCate();}
 
-}?>
+?>
 <?php if (!empty($_GET['msg'])) {
 
     echo "<script>
@@ -50,14 +50,21 @@ Swal.fire({
                 </tr>
             </thead>
             <tbody>
-                <?php readCategory();?>
-                <?php foreach ($datacategory as $row => $value) {
+                <?php readPetCate();?>
+                <?php foreach ($datapetCate as $value) {
+    $name = $value['name'];
+    $type_animal = $value['type_animal'];
+    $img = $value['img'];
+    // $url = "/components//edit_pets_category.php?id=$id";
+    // $url2 = "/components//delete_pets_category.php?id=$id";
+    insertDbCate($name, $type_animal, $img);
+}?>
+                <?php readDBcategories();
+foreach ($datadb as $key => $value) {
     $id = $value['id'];
     $name = $value['name'];
     $type_animal = $value['type_animal'];
     $img = $value['img'];
-    $url = "/components//edit_pets_category.php?id=$id";
-    $url2 = "/components//delete_pets_category.php?id=$id";
 
     ?>
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
@@ -89,4 +96,5 @@ Swal.fire({
     </div>
 
 </div>
+
 <?php include './footer.php'?>

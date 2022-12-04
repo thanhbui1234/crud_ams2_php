@@ -55,24 +55,44 @@ function create()
     $statement = $connect->prepare($sql);
     $statement->execute();
 }
-function readCategory()
+function readPetCate()
 {
     global $connect;
-    $sql = " SELECT cate.id, cate.name, p.type_animal , p.img FROM pets as p right join  pets_category as cate on ";
+    $sql = " SELECT cate.name, p.type_animal , p.img FROM pets as p left join  nameCate as cate on ";
     $sql .= " p.id = cate.id";
     $statement = $connect->prepare($sql);
     $statement->execute();
-    global $datacategory;
-    $datacategory = $statement->fetchAll();
+    global $datapetCate;
+    $datapetCate = $statement->fetchAll();
+    // print_r($datapetCate);
+}
+
+function insertDbCate($name, $type, $img)
+{
+    global $connect;
+    $sql = "INSERT INTO pets_categories (name , type_animal ,img) ";
+    $sql .= " VALUES ('$name','$type','$img')";
+    $statement = $connect->prepare($sql);
+    $statement->execute();
+
+}
+function create_nameCate()
+{global $connect;
+    $name = $_POST['name'];
+    $sql = "INSERT INTO nameCate (name) values ('$name')";
+    $statement = $connect->prepare($sql);
+    $statement->execute();
 
 }
 
-function create_category()
-{global $connect;
-    $name = $_POST['name'];
-    $sql = "INSERT INTO pets_category (name) values ('$name')";
+function readDBcategories()
+{
+    global $connect;
+    $sql = "SELECT * FROM pets_categories";
     $statement = $connect->prepare($sql);
     $statement->execute();
+    global $datadb;
+    $datadb = $statement->fetchAll();
 
 }
 
@@ -90,18 +110,18 @@ function readForUd()
     //     print_r($key);
     // }
 }
-function readFudCategory()
-{
-    global $connect;
-    $id = $_GET['id'];
-    $sql = " SELECT cate.id, cate.name, p.type_animal ,p.img  FROM pets as p right join  pets_category as cate on ";
-    $sql .= " p.id = cate.id WHERE cate.id = $id";
-    $statement = $connect->prepare($sql);
-    $statement->execute();
-    global $dataCate;
-    $dataCate = $statement->fetchAll();
+// function readFudCategory()
+// {
+//     global $connect;
+//     $id = $_GET['id'];
+//     $sql = " SELECT cate.id, cate.name, p.type_animal ,p.img  FROM pets as p right join  pets_category as cate on ";
+//     $sql .= " p.id = cate.id WHERE cate.id = $id";
+//     $statement = $connect->prepare($sql);
+//     $statement->execute();
+//     global $dataCate;
+//     $dataCate = $statement->fetchAll();
 
-}
+// }
 function delete()
 {
     global $connect;
@@ -119,23 +139,23 @@ function delete()
     header('location: ./list_pet.php?msg=' . $msg);
 
 }
-function deleteCategory()
-{
-    global $connect;
-    echo $id = $_GET['id'];
+// function deleteCategory()
+// {
+//     global $connect;
+//     echo $id = $_GET['id'];
 
-    $sql = "DELETE FROM pets_category where id =$id";
-    $statement = $connect->prepare($sql);
+//     $sql = "DELETE FROM pets_category where id =$id";
+//     $statement = $connect->prepare($sql);
 
-    $msg = '';
-    if ($statement->execute()) {
-        $msg = 'delete successfully';
-    } else {
-        $msg = ' delete error';
-    }
-    header('location: ./list_category.php?msg=' . $msg);
+//     $msg = '';
+//     if ($statement->execute()) {
+//         $msg = 'delete successfully';
+//     } else {
+//         $msg = ' delete error';
+//     }
+//     header('location: ./list_category.php?msg=' . $msg);
 
-}
+// }
 
 function update()
 {
