@@ -90,18 +90,18 @@ function readForUd()
     //     print_r($key);
     // }
 }
-// function update()
-// {
-//     global $connect;
-//     $id = $_GET['id'];
-//     $name = $_POST['name'];
-//     $type_animal = $_POST['option'];
-//     $age = $_POST['age'];
-//     $weight = $_POST['weight'];
-//     $sql = "UPDATE pets SET age = $age, type_animal = $type_animal , weight = $weight where id = $id";
-//     $statement = $connect->prepare($sql);
-//     $statement->execute();
-// }
+function readFudCategory()
+{
+    global $connect;
+    $id = $_GET['id'];
+    $sql = " SELECT cate.id, cate.name, p.type_animal ,p.img  FROM pets as p right join  pets_category as cate on ";
+    $sql .= " p.id = cate.id WHERE cate.id = $id";
+    $statement = $connect->prepare($sql);
+    $statement->execute();
+    global $dataCate;
+    $dataCate = $statement->fetchAll();
+
+}
 function delete()
 {
     global $connect;
@@ -164,9 +164,5 @@ function update()
         header('Location: ./list_pet.php?msg2 = ' . $aletUpdate);
 
     }
-
-}
-function updateCategory()
-{
 
 }
