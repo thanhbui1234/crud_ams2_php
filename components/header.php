@@ -21,8 +21,7 @@
     <nav>
         <div class="flex mx-1 mt-5 md:mx-[110px] mb-3 lg:mx-28 justify-around">
             <a href="/index.php">
-                <img class="transition-all animate-spin	     hover:scale-[105%] w-[90px] " src="/img//4.jpg"
-                    alt="" /></a>
+                <img class="transition-all 	     hover:scale-[105%] w-[90px] " src="/img//4.jpg" alt="" /></a>
 
             <div class="flex mt-5">
                 <!-- menu    invisible -->
@@ -43,16 +42,17 @@
                 </ul>
                 <!--  -->
                 <div class="flex pt-2 pb-8">
-                    <button
-                        class="mb-5 md:ml-6 rounded px-4 lg:ml-8 text-cyan-800 border border-current transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110 hover:bg-white duration-300">
-                        Đi vào
-                    </button>
+
+                    <a href="/components//logup.php"><button
+                            class="mb-5 md:ml-6 rounded px-4 lg:ml-8 text-cyan-800 border border-current transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110 hover:bg-white duration-300">
+                            Đăng ký
+                        </button></a>
 
                 </div>
                 <!--  -->
             </div>
             <a href="/index.php">
-                <img class="transition-all animate-spin	 hover:scale-[105%] w-[90px] " src="/img//4.jpg" alt="" /></a>
+                <img class="transition-all 	 hover:scale-[105%] w-[90px] " src="/img//4.jpg" alt="" /></a>
 
         </div>
     </nav>

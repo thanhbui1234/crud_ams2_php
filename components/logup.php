@@ -1,7 +1,10 @@
 <?php include './header.php'?>
 <?php include './funtions.php'?>
-<?php login()?>
 
+<?php
+logup();
+
+?>
 
 <form action="" class="w-full pb-20 pt-24 grid place-items-center bg-[#c0c0c0] " method="POST">
 
@@ -9,23 +12,35 @@
         In</h3>
     <div class="w-[360px] bg-white rounded-b-xl pl-3 ">
         <div class="grid">
+            <label class="py-2" for="email">Name</label>
+            <input type="name" id="name" name="name" placeholder="mail@address.com">
+            <span class="text-red-600"><?php echo isset($err['name']) ? $err['name'] : ''; ?></span>
+        </div>
+        <div class="grid">
             <label class="py-2" for="email">E-mail address</label>
             <input type="email" id="email" name="email" placeholder="mail@address.com">
-            <span class="text-red-600"><?php echo isset($errin['email']) ? $errin['email'] : ''; ?></span>
+            <span class="text-red-600"><?php echo isset($err['email']) ? $err['email'] : ''; ?></span>
 
         </div>
 
         <div class="grid">
             <label class="py-2" for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="password">
-            <span class="text-red-600"><?php echo isset($errin['password']) ? $errin['password'] : ''; ?></span>
+            <span class="text-red-600"><?php echo isset($err['password']) ? $err['password'] : ''; ?></span>
+
+        </div>
+        <div class="grid">
+            <label class="py-2" for="password2">Retype Password</label>
+            <input type="password" name="pwd2" placeholder="Retype Password">
+            <span class="text-red-600"
+                class="text-red-600"><?php echo isset($err['password2']) ? $err['password2'] : ''; ?></span>
 
         </div>
 
         <div class="grid pb-5">
             <input
                 class="button border border-current transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-white duration-300 rounded-full px-5 py-1 mt-2 place-self-center bg-green-500"
-                type="submit" name="submit" value="Sign In">
+                type="submit" name="submit" value="Sign Up">
         </div>
     </div>
 

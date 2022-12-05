@@ -2,27 +2,83 @@
 
 include './conn.php';
 
+function save()
+{
+    session_start();
+}
+
 function login()
 {
     if (isset($_POST['submit'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
         global $connect;
-
-        if (empty($email) || empty($password)) {
-            header('location: ./login.php');
-
-            return false;
+        global $errin;
+        $errin = [];
+        if (empty($email)) {
+            $errin['email'] = 'Bạn thiếu email';
         }
+        if (empty($password)) {
+            $errin['password'] = 'Bạn thiếu password';
+        }
+        if (empty($errin)) {
+            $sql = "select * from users where email='$email' and password='$password'";
+            $statement = $connect->query($sql);
+            $statement->execute();
+            $data = [];
+            $data = $statement->fetchAll();
 
-        $sql = "insert into users (email, password) values ('$email', '$password')";
-        $statement = $connect->prepare($sql);
-        $statement->execute();
-        echo "<h2 class='font-bold pt-3 text-2xl text-red-500 leading-10'>Chào mừng tài khoản $email <br> đã đến với shop cho mèo uy tín nhất thế giới</h2>";
+            if ($data) {
+                global $lap;
+                foreach ($data as $value) {
+                    $lap = "hello my friend " . $value['name'];
+                }
+
+                $_SESSION['user'] = $data;
+                header('location: /index.php?hello=' . $lap);
+
+            } else {
+                echo " khong dung mat khau";
+            }
+
+        }
 
     }
 
 }
+function logup()
+{
+    global $connect;
+    if (isset($_POST['submit'])) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $pssword2 = $_POST['pwd2'];
+        global $err;
+        $err = [];
+        if (empty($name)) {
+            $err['name'] = 'Bạn thiếu name';
+        }
+        if (empty($email)) {
+            $err['email'] = 'Bạn thiếu email';
+        }if (empty($password)) {
+            $err['password'] = 'Bạn thiếu  mật khẩu';
+        }
+        if ($password != $pssword2) {
+            $err['password2'] = 'Bạn cần nhập đúng mật khẩu  ';
+
+        }
+        if (empty($err)) {
+            $sql = "insert into users (name,email, password) values ('$name', '$email','$password')";
+            $statement = $connect->prepare($sql);
+            $statement->execute();
+            // header('location: /index.php ');
+
+        }
+
+    }
+}
+
 function read()
 {
     global $connect;

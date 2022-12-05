@@ -1,5 +1,12 @@
 <?php include './components/header.php'?>
 
+<?php
+if (isset($_GET['hello'])) {
+    $hi = $_GET['hello'];
+    echo "<h1 class='font-bold uppercase text-2xl text-red-600'>$hi</h1>";
+}
+    
+?>
 <!-- <H2 class=" items-center 	">SHOP THÚ CƯNG UY TÍN NHẤT THẾ GIỚI</H2> -->
 
 <DIV class="   bg-[#c0c0c0]">
