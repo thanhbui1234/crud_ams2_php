@@ -21,7 +21,8 @@
     <nav>
         <div class="flex mx-1 mt-5 md:mx-[110px] mb-3 lg:mx-28 justify-around">
             <a href="/index.php">
-                <img class="transition-all hover:scale-[105%] w-[90px] " src="/img//4.jpg" alt="" /></a>
+                <img class="transition-all animate-spin	     hover:scale-[105%] w-[90px] " src="/img//4.jpg"
+                    alt="" /></a>
 
             <div class="flex mt-5">
                 <!-- menu    invisible -->
@@ -51,7 +52,7 @@
                 <!--  -->
             </div>
             <a href="/index.php">
-                <img class="transition-all hover:scale-[105%] w-[90px] " src="/img//4.jpg" alt="" /></a>
+                <img class="transition-all animate-spin	 hover:scale-[105%] w-[90px] " src="/img//4.jpg" alt="" /></a>
 
         </div>
     </nav>

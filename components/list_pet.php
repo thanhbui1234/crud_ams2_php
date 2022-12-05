@@ -90,7 +90,7 @@ aletUpdate();
                     <td class="py-4 px-6">
                         <a href="<?php echo $url ?>" ; class="font-medium text-blue-600 d
                             ark:text-blue-500 hover:underline">Edit</a>
-                        <a href="<?php echo $url2; ?>  "
+                        <a id="delete" href="<?php echo $url2 ?> "
                             class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
 
                     </td>
@@ -103,5 +103,29 @@ aletUpdate();
     </div>
 
 </div>
+<!-- <script>
+const delete1 = document.querySelector('#delete');
+delete1.addEventListener('click', function() {
+    console.log('hehe');
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won't be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        }
+    })
+
+})
+</script> -->
 
 <?php include './footer.php'?>

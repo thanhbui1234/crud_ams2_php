@@ -8,15 +8,16 @@ function login()
         $email = $_POST['email'];
         $password = $_POST['password'];
         global $connect;
+
+        if (empty($email) || empty($password)) {
+            header('location: ./login.php');
+
+            return false;
+        }
+
         $sql = "insert into users (email, password) values ('$email', '$password')";
         $statement = $connect->prepare($sql);
         $statement->execute();
-
-        if (empty($email) || empty($password)) {
-            echo "<h2 class='font-bold pt-3 text-2xl text-red-500 leading-10'>Bạn phải nhập đầy đủ tài khoản và mật khẩu</h2>";
-            echo " <a href='./login.php' class='text-red-600 !! font-bold text-3xl'> Trở lại <i class='fa-solid fa-retweet'></i>  </a>";
-            return false;
-        }
         echo "<h2 class='font-bold pt-3 text-2xl text-red-500 leading-10'>Chào mừng tài khoản $email <br> đã đến với shop cho mèo uy tín nhất thế giới</h2>";
 
     }
@@ -162,11 +163,21 @@ function aletdelete()
 
         echo "<script>
 Swal.fire({
-    position: 'top-end',
-    icon: 'success',
-    title: 'Bạn đã xóa thành công ',
-    showConfirmButton: false,
-    timer: 2500
+    title: 'Are you sure?',
+    text: 'You wont be able to revert this!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+    if (result.isConfirmed) {
+        Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+        )
+    }
 })
 </script>";}
 
