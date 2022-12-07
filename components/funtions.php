@@ -121,18 +121,8 @@ function readPetCate()
     $statement->execute();
     global $datapetCate;
     $datapetCate = $statement->fetchAll();
-    // print_r($datapetCate);
 }
 
-// function insertDbCate($name, $type, $img)
-// {
-//     global $connect;
-//     $sql = "INSERT INTO pets_categories (name , type_animal ,img) ";
-//     $sql .= " VALUES ('$name','$type','$img')";
-//     $statement = $connect->prepare($sql);
-//     $statement->execute();
-
-// }
 function create_nameCate()
 {global $connect;
     $name = $_POST['name'];
@@ -142,30 +132,16 @@ function create_nameCate()
 
 }
 
-// function readDBcategories()
-// {
-//     global $connect;
-//     $sql = "SELECT * FROM pets_categories";
-//     $statement = $connect->prepare($sql);
-//     $statement->execute();
-//     global $datadb;
-//     $datadb = $statement->fetchAll();
-
-// }
-
 function readForUd()
 {
     global $connect;
     $id = $_GET['id'];
-    // echo $id;
     $sql = "SELECT * FROM pets where id  = $id";
     $statement = $connect->prepare($sql);
     $statement->execute();
     global $data;
     $data = $statement->fetchAll();
-    // foreach ($data as $row => $key) {
-    //     print_r($key);
-    // }
+
 }
 function readFudCategory()
 {
